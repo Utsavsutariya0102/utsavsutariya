@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal website of Utsav Sutariya - Learn more about me and contact me.">
+    <title>Utsav Sutariya</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f9f9f9 0%, #e0e0e0 100%);
+            scroll-behavior: smooth;
+            /* Smooth scrolling */
+        }
+
+        header {
+            background: linear-gradient(90deg, #f7e04c, #f9b56b);
+            /* Gradient background */
+            color: #333;
+            /* Dark grey text color */
+            padding: 15px 30px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            /* Text shadow */
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        header nav ul li {
+            position: relative;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            /* White text color */
+            text-decoration: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            background: linear-gradient(135deg, #ff8c00, #e52a50);
+            /* Gradient background */
+        }
+
+        header nav ul li a:hover {
+            background: linear-gradient(135deg, #e52a50, #ff8c00);
+            /* Gradient background on hover */
+            color: #fff;
+            /* White text color */
+            transform: scale(1.1);
+            /* Scale link to 110% */
+        }
+
+        header nav ul li .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #fff;
+            /* White background */
+            color: #333;
+            /* Dark grey text color */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            top: 100%;
+            left: 0;
+            width: max-content;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+            /* Animation */
+        }
+
+        header nav ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+            /* Slightly scale up section on hover */
+        }
+
+        .text-container {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .text-container:hover {
+            transform: scale(1.05);
+            /* Scale container to 105% */
+        }
+
+        .text-container h2 {
+            color: #333;
+            /* Dark grey color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            /* Text shadow */
+        }
+
+        .about-photo {
+            width: 300px;
+            /* Adjust size as needed */
+            height: 300px;
+            /* Adjust size as needed */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+            margin-left: 20px;
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(50%);
+            /* Grayscale effect */
+            transition: filter 0.3s ease-in-out;
+        }
+
+        .about-photo:hover {
+            transform: scale(1.1);
+            /* Scale image to 110% */
+        }
+
+        .about-photo:hover img {
+            filter: grayscale(0%);
+            /* Remove grayscale effect on hover */
+        }
+
+        footer {
+            background: linear-gradient(90deg, #f7e04c, #f9b56b);
+            /* Gradient background */
+            color: #333;
+            /* Dark grey text color */
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+            /* Added margin to push the footer down */
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #f7e04c;
+            /* Light yellow color */
+            color: #333;
+            /* Dark grey text color */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            /* Animation */
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .contact-popup h2 {
+            margin-top: 0;
+        }
+
+        .contact-popup .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+            /* Dark grey color */
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+        }
+
+        .dropdown-content p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .education-section,
+        .work-experience-details {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .education-section {
+            margin-bottom: 60px;
+            /* Space between education section and footer */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Utsav Sutariya</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" id="profileButton">Profile</a>
+                    <div class="dropdown-content" id="profileDropdown">
+                        <p><a href="https://github.com/thesutariya" target="_blank">GitHub Profile</a></p>
+                        <p><a href="https://www.linkedin.com/in/utsavsutariya/" target="_blank">LinkedIn Profile</a></p>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" id="educationButton">Education</a>
+                    <div class="dropdown-content" id="educationDropdown">
+                        <p><strong>Degree:</strong> Bachelor in Electronics And Communications</p>
+                        <p><strong>College:</strong> Government Engineering College, Sector 28, Gandhinagar</p>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" id="contactButton">Contact</a>
+                    <div class="dropdown-content" id="contactDropdown">
+                        <p>Phone: +91 9879629764</p>
+                        <p>Email: utsavsutariya0102@gmail.com</p>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about" class="section-container">
+        <div class="text-container">
+            <h2>About Me</h2>
+            <p>
+
+                Hello, I'm Utsav Sutariya, an Electronics and Communication Engineer with a passion for technology and
+                innovation.
+                My journey in engineering has equipped me with a solid foundation in electronics, communication systems,
+                and software development.
+                I thrive on solving complex problems and am always eager to learn and explore new technologies.
+                Whether it's working on cutting-edge projects or collaborating with like-minded professionals,
+                I am driven by a commitment to excellence and a desire to make a meaningful impact in the field of
+                engineering.</p>
+        </div>
+        <div class="about-photo">
+            <img src="MyPhoto.jpg" alt="Utsav Sutariya">
+        </div>
+    </section>
+
+    <section id="work-experience" class="section-container">
+        <div class="text-container">
+            <h1>Work Experience</h1>
+            <div class="work-experience-details">
+                <p>I have gained valuable experience through various internships in the field of data analysis and AI/ML. 
+                    As a Data Analyst Intern at IBM, I analyzed and interpreted complex datasets to provide insights that supported strategic decision-making. 
+                    At Northiedge Technology, I worked on AI/ML projects, where I focused on developing and optimizing machine learning models, including data preprocessing and algorithm evaluation. 
+                    Additionally, my internship at Languify, by IIT Kharagpur, involved creating a fashion classification model, where I managed tasks such as dataset collection, image augmentation, and model implementation, further deepening my expertise in AI/ML.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education-section">
+        <div class="text-container">
+            <h2>Education</h2>
+            <p><strong>Degree:</strong> Bachelor in Electronics And Communications</p>
+            <p><strong>College:</strong> Government Engineering College, Sector 28, Gandhinagar</p>
+            <p><strong> Relevant Coursework:</strong> Data Analyst, AI/ML, Databases, Python, Microsoft Azure, Google
+                Cloud</p>
+            <!-- Add more education details here if needed -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Utsav Sutariya. All rights reserved.</p>
+    </footer>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="contact-popup" id="contactPopup">
+        <span class="close" id="closeButton">&times;</span>
+        <h2>Contact Me</h2>
+        <p>Phone: +919879629764</p>
+        <p>Email: utsavsutariya0102@gmail.com</p>
+    </div>
+
+    <script>
+        document.getElementById('contactButton').addEventListener('click', () => {
+            document.getElementById('contactPopup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        });
+
+        document.getElementById('closeButton').addEventListener('click', () => {
+            document.getElementById('contactPopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        });
+
+        document.getElementById('overlay').addEventListener('click', () => {
+            document.getElementById('contactPopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
