@@ -44,7 +44,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #ffcc00;
+    color: #000; /* Changed to black */
 }
 
 section {
